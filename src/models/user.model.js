@@ -55,14 +55,14 @@ userSchema.pre("save", async function(next){
     if(!this.isModified("password")) return next();
 
     this.password = await bcrypt.hash(this.password, 10)
-    next()
+    next();
 });
 
 
 // isPasswordCorrect custom methods hai.
 // methods jo hai suki help se custom methods banate hai. 
 userSchema.methods.isPasswordCorrect = async function(password){
-    return await bcrypt.compare(password, this.password)
+    return await bcrypt.compare(password, this.password);
 }
 
 userSchema.methods.generateAccessToken = function(){
